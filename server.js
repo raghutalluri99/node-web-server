@@ -4,11 +4,13 @@ const fs = require('fs');
 
 var app = express();
 
+const port = process.env.port || 3000 ;
+
 app.use(express.static(__dirname + '/public'));
 
-app.use((req, res,next) => {
-	res.render('maintenance.hbs');
-})
+// app.use((req, res,next) => {
+// 	res.render('maintenance.hbs');
+// })
 
 app.use((req, res, next) => {
 	var now= new Date().toString();
@@ -58,4 +60,7 @@ app.get('/Error', (req, res) => {
 	})
 })
 
-app.listen(3000);
+app.listen(port, () => {
+	console.log(`App started on port ${port}`);
+});
+
